@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dayto — Links</title>
+
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone.css">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/brands.css">
+
+  <style>
+    :root{
+      --bg:#050505;
+      --muted:#cfc8bf;
+      --accent:#6d5a49;
+      --accent-2:#6b5946;
+      --card-radius:14px;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background-color: #212529;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      padding:40px 16px;
+    }
+    .container{
+      width:100%;
+      max-width:480px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .avatar{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      overflow:hidden;
+      margin-top:18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      border:4px solid rgba(255,255,255,0.02);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .name{
+      margin-top:12px;
+      font-size:22px;
+      font-weight:700;
+      color:#fff;
+    }
+    .subtitle{
+      margin-top:6px;
+      color:#d7d2c9;
+      font-size:14px;
+    }
+
+    /* соц. иконки */
+    .socials{
+      display:flex;
+      gap:18px;
+      margin-top:14px;
+    }
+    .socials a{
+      color:#fff;
+      font-size:30px;   /* размер как был круг */
+      line-height:1;
+      transition:transform .15s ease, color .15s ease;
+      text-decoration:none;
+    }
+    .socials a:hover{
+      transform:translateY(-4px);
+      color:#cfc8bf;
+    }
+
+    /* карточки */
+    .links{
+      width:100%;
+      margin-top:26px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      padding:0 6px 40px 6px;
+    }
+    .link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:13px;
+      background:var(--accent);
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.03);
+      color:var(--muted);
+      text-decoration:none;
+      box-shadow:0 10px 24px rgba(0,0,0,0.6);
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .link:hover{transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.7)}
+    .link-left{display:flex;align-items:center;gap:14px; flex:1;}
+    .link-icon{
+      width:44px;height:44px;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+      font-size:30px;
+      color:#fff;
+    }
+    .link-content{
+      flex:1;
+      text-align:center;
+    }
+    .link-text{
+      font-size:16px;color:#fff;font-weight:600;
+      line-height:1;
+    }
+    .link-sub{
+      font-size:13px;color:var(--muted); margin-top:4px; font-weight:500;
+    }
+    .kebab{
+      width:34px;height:34px;border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      display:flex;align-items:center;justify-content:center;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    svg{display:block}
+    .footer-space{height:120px}
+    @media (max-width:420px){
+      .container{padding-bottom:40px}
+      .avatar{width:82px;height:82px}
+      .name{font-size:20px}
+      .link{padding:14px}
+      .link-icon{width:40px;height:40px;font-size:22px}
+    }
+
+    #maincontainer{
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" id="maincontainer">
+    <div class="avatar">
+      <img src="https://ugc.production.linktr.ee/8cadaaf8-6353-44f1-8f7c-0936433ceebc_1000123603.jpeg?io=true&size=avatar" alt="Dayto avatar" />
+    </div>
+
+    <div class="name">Dayto</div>
+    <div class="subtitle">Check my links below</div>
+
+    <div class="socials" aria-label="social links">
+      <a href="https://t.me/Dayto_0" title="Telegram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
+      <a href="https://github.com/Dayto_0" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+      <a href="https://discord.com/invite/HWRYgD3y" title="Discord" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></a>
+      <a href="mailto:dtdaytodt@gmail.com" title="Email" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://instagram.com/Dayto__0" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+
+    <div class="links" id="links">
+      <a class="link" href="https://t.me/Dayto_0" target="_blank" rel="noopener noreferrer">
+        <div class="link-left">
+          <div class="link-icon"><i class="fa-brands fa-telegram"></i></div>
+          <div class="link-content"><div class="link-text">If you want to text me, use telegram</div></div>
+        </div>
+      </a>
+
+      <a class="link" href="https://github.com/Dayto_0" target="_blank" rel="noopener noreferrer">
+        <div class="link-left">
+          <div class="link-icon"><i class="fa-brands fa-github"></i></div>
+          <div class="link-content"><div class="link-text">Check out my GitHub Projects</div></div>
+        </div>
+      </a>
+
+      <a class="link" href="https://music.yandex.ru/users/daytodt/playlists/3?utm_medium=copy_link&ref_id=cefd837e-107a-46a6-9a59-9fff843eb240" target="_blank" rel="noopener noreferrer" onclick="openMusic(event)">
+        <div class="link-left">
+          <div class="link-icon"><i class="fa-solid fa-music-note"></i></div>
+          <div class="link-content"><div class="link-text">Btw my music taste</div></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="footer-space"></div>
+  </div>
+
+  <script>
+    function openMusic(e){
+      if(e && e.preventDefault) e.preventDefault();
+      window.open("https://music.yandex.ru/users/daytodt/playlists/3", "_blank", "noopener");
+    }
+
+    document.addEventListener('keydown', function(ev){
+      if(ev.key === '1') window.open('https://t.me/Dayto_0', '_blank', 'noopener');
+      if(ev.key === '2') window.open('https://github.com/Dayto_0', '_blank', 'noopener');
+      if(ev.key === '3') window.open('https://music.yandex.ru/users/daytodt/playlists/3', '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
