@@ -25,7 +25,7 @@
     html,body{height:100%}
     body{
       margin:0;
-      background-color: black;
+      background-color: #000000;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       -webkit-font-smoothing:antialiased;
       display:flex;
@@ -70,7 +70,7 @@
     }
     .socials a{
       color:#fff;
-      font-size:30px;   /* размер как был круг */
+      font-size:30px;
       line-height:1;
       transition:transform .15s ease, color .15s ease;
       text-decoration:none;
@@ -91,10 +91,9 @@
     }
     .link{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:13px;
+      flex-direction:column;
+      gap: s;
+      padding:12px;
       background:var(--accent);
       border-radius:20px;
       border:1px solid rgba(255,255,255,0.03);
@@ -102,6 +101,14 @@
       text-decoration:none;
       box-shadow:0 10px 24px rgba(0,0,0,0.6);
       transition:transform .12s ease, box-shadow .12s ease;
+      cursor:pointer;
+      user-select:none;
+      overflow:visible;
+    }
+    .link.row {
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
     }
     .link:hover{transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.7)}
     .link-left{display:flex;align-items:center;gap:14px; flex:1;}
@@ -128,19 +135,114 @@
       background:rgba(255,255,255,0.02);
       display:flex;align-items:center;justify-content:center;
       border:1px solid rgba(255,255,255,0.03);
+      flex-shrink:0;
+      transition:transform .28s cubic-bezier(.2,.9,.2,1);
     }
     svg{display:block}
+
+    /* плавное раскрытие карточки */
+    .devices-dropdown{
+      overflow:hidden;
+      max-height:0;
+      padding:0 4px;
+      border-radius:12px;
+      transition:
+        max-height .42s cubic-bezier(.2,.9,.2,1),
+        padding .32s cubic-bezier(.2,.9,.2,1),
+        opacity .28s ease;
+      opacity:0;
+    }
+    .link.open .devices-dropdown{
+      max-height:460px; /* достаточно, чтобы вместить все элементы */
+      padding:10px 4px 8px 4px;
+      opacity:1;
+    }
+
+    /* элементы списка: изящное появление с небольшим смещением + stagger */
+    .devices-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .devices-list li{
+      padding:10px 12px;
+      border-radius:10px;
+      background:rgba(0,0,0,0.12);
+      color:#fff;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      cursor:pointer;
+      transform: translateY(-8px);
+      opacity:0;
+      transition: transform .36s cubic-bezier(.22,.9,.25,1), opacity .36s ease;
+    }
+    /* stagger через nth-child */
+    .link.open .devices-list li:nth-child(1){ transition-delay: 0.02s; transform: translateY(0); opacity:1; }
+    .link.open .devices-list li:nth-child(2){ transition-delay: 0.06s; transform: translateY(0); opacity:1; }
+    .link.open .devices-list li:nth-child(3){ transition-delay: 0.10s; transform: translateY(0); opacity:1; }
+    .link.open .devices-list li:nth-child(4){ transition-delay: 0.14s; transform: translateY(0); opacity:1; }
+    /* при закрытии задержки убираются автоматически (они перестают быть заданы) */
+
+    .devices-list li:hover{background:rgba(0,0,0,0.18); transform:translateY(-3px)}
+    .device-badge{
+      font-size:12px;
+      color:var(--muted);
+      background:rgba(255,255,255,0.03);
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.02);
+      font-weight:500;
+    }
+
+    /* ссылки выглядят как текст, но остаются доступными */
+    .devices-list a{
+      color: inherit;
+      text-decoration: none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      width:100%;
+      gap:10px;
+      outline: none;
+    }
+    .devices-list a:focus{
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+      border-radius:8px;
+    }
+
+    /* keyboard focus for li if no anchor */
+    .devices-list li:focus{
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
+      border-radius:8px;
+    }
+
     .footer-space{height:120px}
     @media (max-width:420px){
       .container{padding-bottom:40px}
       .avatar{width:82px;height:82px}
       .name{font-size:20px}
-      .link{padding:14px}
+      .link{padding:12px}
       .link-icon{width:40px;height:40px;font-size:22px}
     }
 
     #maincontainer{
       margin-top: 60px;
+    }
+
+    /* chevron rotation when open */
+    .link.open .kebab i{
+      transform: rotate(180deg);
+    }
+    .kebab i{
+      transition: transform .28s cubic-bezier(.2,.9,.2,1);
+      display:inline-block;
     }
   </style>
 </head>
@@ -162,31 +264,133 @@
     </div>
 
     <div class="links" id="links">
-      <a class="link" href="https://t.me/Dayto_0" target="_blank" rel="noopener noreferrer">
+      <a class="link row" href="https://t.me/Dayto_0" target="_blank" rel="noopener noreferrer">
         <div class="link-left">
-          <div class="link-icon"><i class="fa-brands fa-telegram"></i></div>
+          <div class="link-icon" aria-hidden="true"><i class="fa-brands fa-telegram"></i></div>
           <div class="link-content"><div class="link-text">If you want to text me, use telegram</div></div>
         </div>
       </a>
 
-      <a class="link" href="https://github.com/Dayto_0" target="_blank" rel="noopener noreferrer">
+      <a class="link row" href="https://github.com/Dayto0" target="_blank" rel="noopener noreferrer">
         <div class="link-left">
-          <div class="link-icon"><i class="fa-brands fa-github"></i></div>
+          <div class="link-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></div>
           <div class="link-content"><div class="link-text">Check out my GitHub Projects</div></div>
         </div>
       </a>
-    </div>
+
+      <!-- My Devices: карточка-аккордеон -->
+      <div class="link" id="devicesCard" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
+        <div class="row" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+          <div class="link-left">
+            <div class="link-icon" aria-hidden="true"><i class="fa-solid fa-laptop"></i></div>
+            <div class="link-content"><div class="link-text">My Devices</div></div>
+          </div>
+
+          <div class="kebab" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></div>
+        </div>
+
+        <!-- dropdown как часть карточки -->
+        <div class="devices-dropdown" id="devicesDropdown" aria-hidden="true">
+          <ul class="devices-list" role="menu" aria-label="My devices">
+            <li role="menuitem" tabindex="0">
+              <a href="https://www.gsmarena.com/oneplus_13-13477.php" target="_blank" rel="noopener noreferrer">
+                <span>Oneplus 13</span>
+                <span class="device-badge">Sun</span>
+              </a>
+            </li>
+
+            <li role="menuitem" tabindex="0">
+              <a href="https://www.gsmarena.com/oneplus_ace-11488.php" target="_blank" rel="noopener noreferrer">
+                <span>Oneplus Ace</span>
+                <span class="device-badge">Pickle</span>
+              </a>
+            </li>
+
+            <li role="menuitem" tabindex="0">
+              <a href="https://www.gsmarena.com/xiaomi_pad_5_pro_12_4-11759.php" target="_blank" rel="noopener noreferrer">
+                <span>Xiaomi mi pad 5 pro 12,4</span>
+                <span class="device-badge">Dagu</span>
+              </a>
+            </li>
+
+            <li role="menuitem" tabindex="0">
+              <a href="https://www.asus.com/ru/laptops/for-gaming/tuf-gaming/2021-asus-tuf-gaming-f17/techspec/" target="_blank" rel="noopener noreferrer">
+                <span>Asus TUF F17 2921</span>
+                <span class="device-badge">FX706HE</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
     <div class="footer-space"></div>
   </div>
 
   <script>
+    (function(){
+      const card = document.getElementById('devicesCard');
+      const dropdown = document.getElementById('devicesDropdown');
 
-    document.addEventListener('keydown', function(ev){
-      if(ev.key === '1') window.open('https://t.me/Dayto_0', '_blank', 'noopener');
-      if(ev.key === '2') window.open('https://github.com/Dayto_0', '_blank', 'noopener');
-      if(ev.key === '3') window.open('https://music.yandex.ru/users/daytodt/playlists/3', '_blank', 'noopener');
-    });
+      function openClose(toggle) {
+        const opening = toggle === undefined ? !card.classList.contains('open') : !!toggle;
+        card.classList.toggle('open', opening);
+        card.setAttribute('aria-expanded', opening ? 'true' : 'false');
+        dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
+      }
+
+      // click on card toggles dropdown (but ignore clicks on list items/links)
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.devices-list')) return;
+        openClose();
+      });
+
+      // keyboard support: Enter/Space to toggle, Esc to close
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openClose();
+        } else if (e.key === 'Escape') {
+          openClose(false);
+          card.focus();
+        }
+      });
+
+      // close if click outside
+      document.addEventListener('click', (e) => {
+        if (!card.contains(e.target)) {
+          openClose(false);
+        }
+      });
+
+      // handle keyboard activation for list items without anchors (keeps accessibility)
+      const items = card.querySelectorAll('.devices-list li');
+      items.forEach((li) => {
+        li.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            const a = li.querySelector('a');
+            if (a) {
+              // follow the link on Enter/Space
+              a.click();
+            } else {
+              ev.preventDefault();
+              // fallback behaviour: highlight and close
+              items.forEach(x => x.style.opacity = '1');
+              li.style.opacity = '0.85';
+              openClose(false);
+            }
+          }
+        });
+      });
+
+      // nice behaviour: when opening, focus first anchor
+      const observer = new MutationObserver(() => {
+        if (card.classList.contains('open')) {
+          const firstA = card.querySelector('.devices-list a');
+          if (firstA) firstA.focus();
+        }
+      });
+      observer.observe(card, { attributes: true, attributeFilter: ['class'] });
+    })();
   </script>
 </body>
 </html>
