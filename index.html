@@ -69,8 +69,6 @@
       color:#ffffff;
       font-size:15px;
     }
-
-    /* соц. иконки */
     .socials{
       display:flex;
       gap:18px;
@@ -87,8 +85,6 @@
       transform:translateY(-4px);
       color:#cfc8bf;
     }
-
-    /* карточки */
     .links{
       width:100%;
       margin-top:26px;
@@ -147,8 +143,6 @@
       transition:transform .28s cubic-bezier(.2,.9,.2,1);
     }
     svg{display:block}
-
-    /* плавное раскрытие карточки */
     .devices-dropdown{
       overflow:hidden;
       max-height:0;
@@ -161,12 +155,10 @@
       opacity:0;
     }
     .link.open .devices-dropdown{
-      max-height:460px; /* достаточно, чтобы вместить все элементы */
+      max-height:460px; 
       padding:10px 4px 8px 4px;
       opacity:1;
     }
-
-    /* элементы списка: изящное появление с небольшим смещением + stagger */
     .devices-list{
       list-style:none;
       margin:0;
@@ -190,13 +182,10 @@
       opacity:0;
       transition: transform .36s cubic-bezier(.22,.9,.25,1), opacity .36s ease;
     }
-    /* stagger через nth-child */
     .link.open .devices-list li:nth-child(1){ transition-delay: 0.02s; transform: translateY(0); opacity:1; }
     .link.open .devices-list li:nth-child(2){ transition-delay: 0.06s; transform: translateY(0); opacity:1; }
     .link.open .devices-list li:nth-child(3){ transition-delay: 0.10s; transform: translateY(0); opacity:1; }
     .link.open .devices-list li:nth-child(4){ transition-delay: 0.14s; transform: translateY(0); opacity:1; }
-    /* при закрытии задержки убираются автоматически (они перестают быть заданы) */
-
     .devices-list li:hover{background:rgba(0,0,0,0.18); transform:translateY(-3px)}
     .device-badge{
       font-size:12px;
@@ -207,7 +196,6 @@
       border:1px solid rgba(255,255,255,0.02);
       font-weight:500;
     }
-
     /* ссылки выглядят как текст, но остаются доступными */
     .devices-list a{
       color: inherit;
@@ -223,14 +211,12 @@
       box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
       border-radius:8px;
     }
-
     /* keyboard focus for li if no anchor */
     .devices-list li:focus{
       outline: none;
       box-shadow: 0 0 0 3px rgba(255,255,255,0.06);
       border-radius:8px;
     }
-
     .footer-space{height:120px}
     @media (max-width:420px){
       .container{padding-bottom:40px}
@@ -239,11 +225,9 @@
       .link{padding:12px}
       .link-icon{width:40px;height:40px;font-size:22px}
     }
-
     #maincontainer{
       margin-top: 60px;
     }
-
     /* chevron rotation when open */
     .link.open .kebab i{
       transform: rotate(180deg);
@@ -267,10 +251,8 @@
     <div class="avatar">
       <img src="https://dayto0.github.io/mylinks/avatar.jpg" alt="Dayto avatar" />
     </div>
-
     <div class="name">Dayto</div>
     <div class="subtitle">Check my links below</div>
-
     <div class="socials" aria-label="social links">
       <a href="https://t.me/Dayto_0" title="Telegram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
       <a href="https://github.com/Dayto_0" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
@@ -278,7 +260,6 @@
       <a href="mailto:dtdaytodt@gmail.com" title="Email" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-envelope"></i></a>
       <a href="https://instagram.com/Dayto__0" title="Instagram" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
     </div>
-
     <div class="links" id="links">
       <a class="link row" href="https://t.me/Dayto_0" target="_blank" rel="noopener noreferrer">
         <div class="link-left">
@@ -286,15 +267,12 @@
           <div class="link-content"><div class="link-text">If you want to text me, use telegram</div></div>
         </div>
       </a>
-
       <a class="link row" href="https://github.com/Dayto0" target="_blank" rel="noopener noreferrer">
         <div class="link-left">
           <div class="link-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></div>
           <div class="link-content"><div class="link-text">Check out my GitHub Projects</div></div>
         </div>
       </a>
-
-      <!-- My Devices: карточка-аккордеон -->
       <div class="link" id="devicesCard" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <div class="row" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
           <div class="link-left">
@@ -304,8 +282,6 @@
 
           <div class="kebab" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></div>
         </div>
-
-        <!-- dropdown как часть карточки -->
         <div class="devices-dropdown" id="devicesDropdown" aria-hidden="true">
           <ul class="devices-list" role="menu" aria-label="My devices">
             <li role="menuitem" tabindex="0">
@@ -314,21 +290,18 @@
                 <span class="device-badge">Sun</span>
               </a>
             </li>
-
             <li role="menuitem" tabindex="0">
               <a href="https://www.gsmarena.com/oneplus_ace-11488.php" target="_blank" rel="noopener noreferrer">
                 <span>Oneplus Ace</span>
                 <span class="device-badge">Pickle</span>
               </a>
             </li>
-
             <li role="menuitem" tabindex="0">
               <a href="https://www.gsmarena.com/xiaomi_pad_5_pro_12_4-11759.php" target="_blank" rel="noopener noreferrer">
                 <span>Xiaomi mi pad 5 pro 12,4</span>
                 <span class="device-badge">Dagu</span>
               </a>
             </li>
-
             <li role="menuitem" tabindex="0">
               <a href="https://www.asus.com/ru/laptops/for-gaming/tuf-gaming/2021-asus-tuf-gaming-f17/techspec/" target="_blank" rel="noopener noreferrer">
                 <span>Asus TUF F17 2921</span>
@@ -338,10 +311,8 @@
           </ul>
         </div>
       </div>
-
     <div class="footer-space"></div>
   </div>
-
   <script>
     (function(){
       const card = document.getElementById('devicesCard');
@@ -353,13 +324,11 @@
         card.setAttribute('aria-expanded', opening ? 'true' : 'false');
         dropdown.setAttribute('aria-hidden', opening ? 'false' : 'true');
       }
-
       // click on card toggles dropdown (but ignore clicks on list items/links)
       card.addEventListener('click', (e) => {
         if (e.target.closest('.devices-list')) return;
         openClose();
       });
-
       // keyboard support: Enter/Space to toggle, Esc to close
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -370,14 +339,12 @@
           card.focus();
         }
       });
-
       // close if click outside
       document.addEventListener('click', (e) => {
         if (!card.contains(e.target)) {
           openClose(false);
         }
       });
-
       // handle keyboard activation for list items without anchors (keeps accessibility)
       const items = card.querySelectorAll('.devices-list li');
       items.forEach((li) => {
